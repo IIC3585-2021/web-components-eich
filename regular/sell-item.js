@@ -18,6 +18,7 @@ template.innerHTML = /*html*/`
         transform: scale(1.1);
         transition: visibility 0s linear .25s,opacity .25s 0s,transform .25s;
         z-index: 1;
+        margin-top: 10px;
     }
 
 
@@ -40,7 +41,8 @@ template.innerHTML = /*html*/`
     }
 
     .body-container{
-        background-color: green;
+        background-color: #e1eeff;
+        border-radius: 5px;
         width: 90%;
         display: flex;
         flex-direction: column;
@@ -48,8 +50,7 @@ template.innerHTML = /*html*/`
         align-items: center;
     }
     .discount-container{
-        width: 100%;
-        background-color: blue;
+        width: 90%;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -58,8 +59,7 @@ template.innerHTML = /*html*/`
         width: 100%;
     }
     .normal-price{
-        background-color: purple;
-        width: 100%;
+        width: 90%;
     }
     
 

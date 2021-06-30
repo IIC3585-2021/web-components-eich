@@ -5,10 +5,18 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Main</title>
         <script src="sell-item.js"></script>
+        <script src="todo-item.js"></script>
+        <script src='todo-input.js'></script>
         <script src="todo-list.js"></script>
         <script src="main-container.js"></script>
     </head>
-    <body>
+    <style>
+        .body{
+            height: 100%;
+        }
+    </style>
+    <body class='body'>
+        <div><p>Lugar dentro de tags wue esta fuera del DOM Shadow por lo que es afectado por cambios de estilos globales</p></div>
         <main-container />
         
     </body>

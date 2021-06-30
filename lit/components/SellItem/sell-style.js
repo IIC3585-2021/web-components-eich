@@ -17,10 +17,15 @@ export const style = css`
         padding: 7px;
     }
     .sell-input{
-        margin:40px 0
+        margin:40px 0;
     }
     .sell-body{
-        text-align:center
+        text-align: center;
+        margin-top: 20px;
+        background-color: orange;
+        border-radius: 10px;
+        width: 30%;
+
     }
     .sell-item{
         padding: 10px;
@@ -28,6 +33,6 @@ export const style = css`
         margin: 5px auto;
         font-size: 1.5rem;
         border-radius: 5px;
-        background-color: #c2e0ff
+        background-color: #c2e0ff;
     }
 `

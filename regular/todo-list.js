@@ -20,13 +20,14 @@ templateTodo.innerHTML = /*html*/`
         padding-top: 1%;
         padding-bottom: 1%;
         padding-left: 1%;
-        width: 40%;
+        width: 30%;
         background-color: gray;
         opacity: 0;
         visibility: hidden;
         transform: scale(1.1);
         transition: visibility 0s linear .25s,opacity .25s 0s,transform .25s;
         z-index: 1;
+        margin-top: 10px;
         }
     .visible {
     opacity: 1;
@@ -42,8 +43,9 @@ templateTodo.innerHTML = /*html*/`
         <p class="title"></p>
     </div>
     <div class="list">
-        <ul class='list-ul'></ul>
-    </div>
+        <ul class='list-ul'>
+        </ul>
+        </div>
     <div class="input-container">
         <div class="prompt"></div><input type='text' class='input' id='input'/><button class='add'>Agregar</button>
     </div>
@@ -54,9 +56,11 @@ templateTodo.innerHTML = /*html*/`
 class ToDoList extends HTMLElement{
 
     constructor(){
+        console.log("WOW")
         super();
         this.attachShadow({"mode": "open"})
         this.shadowRoot.appendChild(templateTodo.content.cloneNode(true))
+        this.list = JSON.parse(localStorage.getItem('litTodoList-regular')) || [];
     }
 
     static get observedAttributes () {
@@ -67,6 +71,7 @@ class ToDoList extends HTMLElement{
         let todo = this.shadowRoot.querySelector(".list").querySelector('.list-ul')
         return todo
     }
+    
 
     todos(val) {
         let todos2 = this.todos2
@@ -82,12 +87,13 @@ class ToDoList extends HTMLElement{
                 console.log("VEAMOS", path, typeof path)
                 const array = Array.from(path)
                 console.log("DALEE", array, typeof array)
-                const new_list = array.map(todo => {
+                const new_list = array.map((todo, index) => {
                     if (parseInt(todo.querySelector('button').className) !== parseInt(new_li_button.className)) {
-                        console.log("??", todo.innerHTML)
-                        return `<li>${todo.innerHTML}</li>`
+                        console.log("??", todo.innerHTML, todo.textContent.replace('Eliminar', ''))
+                        let new_text = todo.textContent.replace('Eliminar', '')
+                        return `<li>${new_text} <button class=${index}>Eliminar</buton></li>`
                     } 
-                }).filter(todo => todo !== undefined)
+                }).filter(todo => todo !== undefined).join('')
                 console.log("WOW", new_list)
                 document.querySelector('main-container').shadowRoot.querySelector('.main-template-container').querySelector('todo-list').shadowRoot.querySelector(".list").querySelector('.list-ul').innerHTML = new_list;
               };
@@ -102,7 +108,6 @@ class ToDoList extends HTMLElement{
         
     }
     attributeChangedCallback(name, oldValue, newValue) {
-        console.log("CAMBIANDO", name, oldValue, newValue)
         if (name === "title") {
           this.shadowRoot.querySelector(".title").textContent = newValue;
         } else if (name === "input") {

@@ -27,10 +27,8 @@ class SellElement extends LitElement {
             <div class="sell-body">
                 <img src=${this.image.replace(',', '')}/>
                 <div>${this.description}</div>
-                veamos ${this.discount.replace(',', '')} ${typeof this.discount} ${this.discount.replace(',', '') === 'true'}
                 ${this.discount.replace(',', '') === 'true'? html`
                     <div>
-                        aca
                         <div>${parseInt(this.price.replace(',', '')) * parseInt(this.discountAmount)/100}</div>
                         <div>${this.discountAmount}</div>
                     </div>
@@ -40,7 +38,6 @@ class SellElement extends LitElement {
                 
                 `: html`
                 <div>
-                    hola
                     <div>${this.price.replace(',', '')}</div>
                 </div>
                 `}
