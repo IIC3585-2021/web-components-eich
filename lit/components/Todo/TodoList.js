@@ -14,12 +14,8 @@ class TodoList extends LitElement {
       }
     
     deleteItem(item){
-        console.log("···", item.target.value, this)
         const todoList = JSON.parse(localStorage.getItem('litTodoList')) || []
-        console.log("···1", this.list, todoList)
-        console.log("??", item.target.value)
         let newTodoList = todoList.filter((element, index) => parseInt(index) !== parseInt(item.target.value))
-        console.log("FINAL", newTodoList)
         this.list = newTodoList
         localStorage.setItem('litTodoList', JSON.stringify(newTodoList))
     }

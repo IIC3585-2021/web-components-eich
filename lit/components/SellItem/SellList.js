@@ -33,17 +33,14 @@ class SellList extends LitElement {
     }
 
     handleInputImage(e) {
-        console.log("?", e)
         this.image = e.target.value;
     }
 
     handleInputDescription(e) {
-        console.log("!", e)
         this.description = e.target.value;
     }
 
     handleInputPrice(e) {
-        console.log("Q", e)
         this.price = e.target.value;
     }
     handleInputDiscount(e) {
@@ -53,34 +50,26 @@ class SellList extends LitElement {
         } else {
             this.discount = 'false';
         }
-        console.log("QUEDA EL DISCOUNT", this.discount, this.discountAux)
     }
     handleInputDiscountAmount(e) {
-        console.log("Q", e)
         this.discountAmount = e.target.value;
     }
 
     createNewSellItem(){
         const sellList = JSON.parse(localStorage.getItem('litSellList')) || []
         this.newItem = {"description": this.description, "price": this.price, "image": this.image, "discount": this.discount, "discountAmount": this.discountAmount}
-        console.log("NEW ITEM", this.newItem)
         sellList.push(this.newItem)
         this.list = sellList
         localStorage.setItem('litSellList', JSON.stringify(sellList))
         this.image = ""
         this.description = ""
         this.price = ""
-        console.log("VEAMOS", this.list)
         this.newItem = {}
     }
 
     deleteItem(item){
-        console.log("···", item.target.value, "$$$", this)
         const sellList = JSON.parse(localStorage.getItem('litSellList')) || []
-        console.log("···1", this.list, sellList)
-        console.log("??", item.target.value)
         let newSellList = sellList.filter((element, index) => parseInt(index) !== parseInt(item.target.value))
-        console.log("FINAL", newSellList)
         this.list = newSellList
         localStorage.setItem('litSellList', JSON.stringify(newSellList))
     }
